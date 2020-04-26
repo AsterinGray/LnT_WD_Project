@@ -1,0 +1,209 @@
+$primary: #120136;
+$secondary: #035aa6;
+$accent1: #40bad5;
+$accent2: #fcbf1e;
+
+@mixin flex {
+    display: flex;
+    align-items: center;
+    height: 100vh;
+}
+
+html,body{
+    margin: 0;
+    padding: 0;
+    user-select: none;
+    background-color: $primary;
+    font-family: 'Courier';
+}
+
+.about{
+    @include flex ();
+    padding: 0 5rem;
+    justify-content: space-around;
+    color: $accent2;
+    &>img{
+        width: 35%;
+        transition: ease;
+        animation: profile 1s ease-in-out;
+    }
+    &>p{
+        width: 50%;
+        font-size: 4rem;
+        text-align: center;
+    }
+}
+
+.work{
+    @include flex();
+    justify-content: space-between;
+    padding: 0 5rem;
+    &-content{
+        width: 40%;
+        &>h1{
+            font: 4rem bold;
+            color: $accent2;
+            margin: 1rem 0;
+        }
+        &-button{
+            display: flex;
+            flex-direction: column;
+            &>button{
+                height: 4rem;
+                font-size: 2rem;
+                border: 1px solid $accent1;
+                background-color: $secondary;
+                color: white;
+            }
+            &-item{
+                transition: ease 1s;
+                &.active{
+                    box-shadow: 1rem 1rem $accent1;
+                    transform: translate(-1rem, -1rem);
+                }
+                &:hover{
+                    filter: brightness(80%);
+                }
+            }
+        }
+    }
+    &-result{
+        width: 50%;
+        &>img{
+            width: 100%;
+            display: none;
+            &.active{
+                display: block;
+            }
+        }
+    }
+}
+
+.contact{
+    @include flex();
+    padding: 0 5rem;
+    &-content{
+        width: 50%;
+        font-size: 3rem;
+        color: $accent2;
+        &>div{
+            font-weight: bold;
+        }
+        &>p{
+            opacity: 80%;
+        }
+    }
+    & button{
+        border: none;
+        font-size: 3rem;
+        color: $accent2;
+        background-color: $accent1;
+        box-shadow: $accent2 5px 5px;
+        border-radius: 30px;
+        padding: 1rem;
+        &:active{
+            box-shadow: none;
+        }
+    }
+    &-media{
+        width: 50%;
+        &-button{
+            display: flex;
+            justify-content: center;
+        }
+        &-icon{
+            display: none;
+            flex-direction: column;
+            &>div{
+                display: flex;
+                justify-content: space-evenly;
+                &>a{
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    text-decoration: none;
+                    color: $accent2;
+                    margin: 1rem;
+                    &>img{
+                        width: 10rem;
+                    }
+                }
+            }
+        }
+    }
+}
+
+.arrow{
+    transform: translate(0, -125px);
+    animation: arrow 1s infinite;
+    text-align: center;
+    font-size: 5rem;
+    color: $accent2;
+    cursor: pointer;
+}
+
+@media only screen and (max-width: 768px){
+    .about{
+        padding: 0;
+        &>img{
+            display: none;
+        }
+        &>p{
+            width: 100%;
+        }
+    }
+    .work{
+        padding: 0 1rem;
+        justify-content: center;
+        flex-direction: column;
+        &-content{
+            width: 100%;
+            justify-content: center;
+            align-items: center;
+            &>h1{
+                text-align: center;
+            }
+            &-button{
+                margin: 3rem 0;
+                justify-content: center;
+                flex-direction: row;
+                &>button{
+                    font-size: 1rem;
+                }
+            }
+        }
+        &-result{
+            width: 100%;
+            height: fit-content;
+        }
+    }
+    .contact{
+        flex-direction: column;
+        padding: 5rem 1rem;
+        &-content{
+            width: 100%;
+        }
+        &-media-icon{
+            justify-content: center;
+        }
+    }
+}
+
+
+@keyframes profile{
+    0%{
+        transform: translate(-500px, 0);
+    }
+    100%{
+        transform: translate(0, 0);
+    }
+}
+
+@keyframes arrow{
+    0%{
+        transform: translate(0, -125px);
+    }
+    100%{
+        transform: translate(0, -75px);
+    }
+}
